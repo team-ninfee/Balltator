@@ -5,6 +5,7 @@ using UnityEngine;
 public class BallScript : MonoBehaviour
 {
     public float speedForce = 1.0f;
+    public float maxVelocity = 8.0f;
     private Vector2 direction;
 
     // Start is called before the first frame update
@@ -34,6 +35,12 @@ public class BallScript : MonoBehaviour
             var rigi_bdy = GetComponent<Rigidbody2D>();
             //nasa physics
             rigi_bdy.AddForce(direction * _normal * speedForce);
+            //rigi_bdy.velocity = rigi_bdy.velocity * _normal;
+            //limit velocity...
+            if(rigi_bdy.velocity.magnitude > maxVelocity)
+            {
+                rigi_bdy.velocity = rigi_bdy.velocity.normalized * maxVelocity;
+            }
         }
         //todo bug fix paddle collission alskñjdfañslkjfdñlkasjdf
     }

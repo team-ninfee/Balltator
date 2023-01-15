@@ -19,7 +19,11 @@ public class WallScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //Close game...
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            QuitApp();
+        }
     }
 
     void AddPoints(int points)
@@ -38,5 +42,20 @@ public class WallScript : MonoBehaviour
         {
             SceneManager.LoadScene("Level001");
         }
+    }
+
+    void QuitApp()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #elif UNITY_WEBGL
+        //si pantalla completa, entonces salir de ese modo
+        if(Screen.fullScreen == true)
+        {
+            Screen.fullScreen = !Screen.fullScreen;
+        }
+        #else
+        Application.Quit();
+        #endif
     }
 }
