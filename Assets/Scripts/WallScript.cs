@@ -8,12 +8,18 @@ public class WallScript : MonoBehaviour
     //global state...
     private int playerLives;
     private int playerPoints;
+    private int totalBlocks;
+    private int currentLevel;
 
     // Start is called before the first frame update
     void Start()
     {
         playerLives = 3;
         playerPoints = 0;
+        currentLevel = 1;
+        //keep game state.
+        DontDestroyOnLoad(gameObject);
+        //totalBlocks = 0;
     }
 
     // Update is called once per frame
@@ -31,7 +37,24 @@ public class WallScript : MonoBehaviour
         playerPoints += points;
     }
 
-    void TakeLike()
+    void AddBlockCount()
+    {
+        totalBlocks++;
+    }
+
+    void TakeBlockCount()
+    {
+        totalBlocks--;
+        //todo: skip level...
+        if(totalBlocks== 0)
+        {
+            currentLevel++;
+            Debug.Log("Fin del juego.. Victoria (narrador de halo)");
+            SceneManager.LoadScene("Level00" + currentLevel);
+        }
+    }
+
+    void TakeLive()
     {
         playerLives--;
     }
