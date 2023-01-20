@@ -49,7 +49,7 @@ public class BallScript : MonoBehaviour
             var new_direction = rigi_bdy.velocity;
             //game play from arkanoid...
             float player_offset = player_rgd_bdy.transform.position.x - transform.position.x;
-            new_direction.x += player_rgd_bdy.velocity.x / 2 + player_offset / 5;
+            new_direction.x += player_rgd_bdy.velocity.x / 8 + player_offset / 2;
             //minimal y speed when hitting paddle
             if(new_direction.y < 0.4)
                 new_direction.y = 0.4f; 
@@ -66,6 +66,8 @@ public class BallScript : MonoBehaviour
                 rigi_bdy.velocity = new_direction;
             }
         }
+
+        //todo: set max speed...
 
         //correct velocity... to 45* degrees
         //var _direction = new Vector2(
