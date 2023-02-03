@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class WallScript : MonoBehaviour
 {
+    public GUIStyle guiStyle;
     //global state...
     private int playerLives;
     private int playerPoints;
@@ -35,6 +36,7 @@ public class WallScript : MonoBehaviour
     void AddPoints(int points)
     {
         playerPoints += points;
+        Debug.Log("Puntos:" + playerPoints);
     }
 
     void AddBlockCount()
@@ -80,5 +82,14 @@ public class WallScript : MonoBehaviour
         #else
         Application.Quit();
         #endif
+    }
+
+    //agrega información del juego en pantalla
+    void OnGUI()
+    {   
+        GUI.Box(new Rect(Screen.width / 4 - 260, 0, Screen.width / 2 + 180, 25),"", guiStyle);
+
+        GUI.Label(new Rect(Screen.width / 4 - 255, 3, Screen.width /2 + 175, 22), "Pulsar ESC para salir. \n" + 
+            "Vidas: " + playerLives + " Puntaje: " + playerPoints, guiStyle);
     }
 }
