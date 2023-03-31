@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class BlockScript : MonoBehaviour
 {
+    public int points = 10;
     // Start is called before the first frame update
     void Start()
     {
-        
+        var wall = GameObject.Find("Walls");
+        //register block in manager
+        wall.SendMessage("AddBlockCount");
     }
 
     // Update is called once per frame
@@ -20,6 +23,11 @@ public class BlockScript : MonoBehaviour
     void OnCollisionEnter2D()
     {
          var wall = GameObject.Find("Walls");
-         wall.SendMessage("AddPoints");
+         wall.SendMessage("AddPoints", points);
+    }
+
+    void Kill()
+    {
+        Destroy(gameObject);
     }
 }

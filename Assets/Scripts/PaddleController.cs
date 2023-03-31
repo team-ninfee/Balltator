@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PaddleController : MonoBehaviour
 {
+    public float paddleForce = 2.0f;
     private Rigidbody2D rigi_bdy;
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,12 @@ public class PaddleController : MonoBehaviour
         //simple game logic
         if(Input.GetKey(KeyCode.LeftArrow))
         {
-            _horSpeed = -2.0f;
+            _horSpeed = -1.0f;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            _horSpeed = 2.0f;
+            _horSpeed = 1.0f;
         }
-        rigi_bdy.AddForce(new Vector2(_horSpeed * 18.0f, 0.0f));
+        rigi_bdy.AddForce(new Vector2(_horSpeed * paddleForce, 0.0f));
     }
 }
